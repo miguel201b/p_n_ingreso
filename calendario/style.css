@@ -28,15 +28,8 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
 
-.wrapper header{
-  display: flex;
-  align-items: center;
-  padding: 25px 30px 10px;
-  justify-content: space-between;
-}
-
 .current-date{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 header .current-date{
@@ -45,7 +38,7 @@ header .current-date{
 }
 
 .calendar{
-  padding: 20px;
+  padding: 10px;
 }
 
 .calendar ul{
@@ -74,7 +67,7 @@ header .current-date{
   z-index: 1;
   cursor: pointer;
   position: relative;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .days li.inactive{
