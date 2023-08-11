@@ -6,24 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Pagina_n_i</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Krona+One&amp;display=swap">
     <link rel="stylesheet" href="assets/css/Banner-Heading-Image-images.css">
 </head>
 
-<body>
+<body style="font-family: krona-one;">
     <nav class="navbar navbar-expand-md bg-body" style="background: rgb(217,236,8) !important;">
         <div class="container-fluid"><img src="assets/img/logoUNAM.png" width="73" height="74"><img src="assets/img/LogoCCH.png" width="75" height="74"><img src="assets/img/logoCCHO.png" width="76" height="72"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-center" href="#">Bienvenido</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="#">Instructivo de inscripción</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="Calendario.html">Calendario</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="Horario.html">Horario personalizado</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="Foro.html">Foro de dudas</a></li>
+                    <li class="nav-item"><a class="nav-link active text-center" href="index.html" style="color: rgba(0,0,0,0.8);font-size: 29px;">Bienvenido</a></li>
+                    <li class="nav-item"><a class="nav-link text-center" href="Instructivo.html" style="font-size: 29px;">Instructivo de inscripción</a></li>
+                    <li class="nav-item"><a class="nav-link text-center" href="Calendario.html" style="font-size: 29px;">Calendario</a></li>
+                    <li class="nav-item"><a class="nav-link text-center" href="Horario.html" style="color: rgb(0,0,0);font-weight: bold;font-size: 29px;">Horario personalizado</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <p class="lead" style="margin-left: 15px;margin-right: 15px;text-align: justify;margin-top: 20px;margin-bottom: 20px;">Esta es una herramienta que te ayudar a crear un horario personalizado para la semana de inscripción. <br><br>Como habrás observado en el&nbsp;<a href="index.html">instructivo</a> para alumnos de primer ingreso las actividades que programamos para ustedes en la semana de inscripción dependerán de su apellido paterno por lo que en esta página se solicita que nos proporciones tu apellido paterno y número de cuenta, con esto podras acceder a un grupo para el <a href="index.html">curso de género</a>&nbsp;y un horario para tus actividades de la semana.</p><label class="form-label" style="margin-left: 15px;">Ingresa tu primer<br>apellido</label><input type="text" style="transform: translateY(-14px);margin-left: 10px;"><label class="form-label" style="margin-left: 15px;">Ingresa tu número<br>de cuenta</label><input type="text" style="transform: translateY(-14px);margin-left: 10px;"><button class="btn btn-primary" type="button" style="margin-bottom: 33px;margin-left: 17px;">Enviar</button>
+    <h1 style="margin-left: 15px;margin-right: 15px;text-align: justify;font-family: arial;margin-top: 20px;font-size: 40px;">Horario de la semana de bienvenida&nbsp;</h1>
+    <p style="margin-left: 15px;margin-right: 15px;text-align: justify;font-family: arial;margin-top: 20px;text-size-adjust: initial;font-size: 29px;">Como abras notado en el&nbsp;<a href="Instructivo.html" target="_blank">Instructivo de inscripción</a>&nbsp;la mayoría de actividades de la semana de inscripciones las tomaras dependiendo de la primera letra de tu apellido paterno, para facilitarte armar tu horario de dicha semana así como tu inscripción a un grupo para el curso de género diseñamos esta página en la que al ingresar tu&nbsp;<a href="#" data-bs-target="#cuenta" data-bs-toggle="modal">número de cuenta</a></p>
+    <div class="modal fade" role="dialog" tabindex="-1" id="cuenta">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Title</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>The content of your modal.</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-6 col-xxl-4"><label class="form-label" style="margin-left: 15px;font-size: 29px;">Ingresa tu primer apellido</label><input type="text" style="margin-left: 15px;transform: translateY(-6px);font-size: 18px;width: 177.815px;"></div>
+            <div class="col-md-6"><label class="form-label" style="margin-left: 15px;font-size: 29px;">Ingresa tu número de cuenta</label><input type="text" style="margin-left: 15px;transform: translateY(-6px);width: 107.946px;font-size: 18px;"></div>
+        </div>
+    </div><button class="btn btn-primary float-start" type="button" style="font-size: 25px;margin-left: 25px;margin-top: 20px;">Generar horario</button>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
