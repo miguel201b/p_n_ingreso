@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Pagina_n_i</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Krona+One&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Banner-Heading-Image-images.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-body" style="background: rgb(217,236,8) !important;">
+        <div class="container-fluid"><img src="assets/img/logoUNAM.png" width="73" height="74"><img src="assets/img/LogoCCH.png" width="75" height="74"><img src="assets/img/logoCCHO.png" width="76" height="72"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active text-center" href="index.html" style="color: rgba(0,0,0,0.8);">Bienvenido</a></li>
+                    <li class="nav-item"><a class="nav-link text-center" href="Instructivo.html">Instructivo de inscripción</a></li>
+                    <li class="nav-item"><a class="nav-link text-center" href="Calendario.html" style="color: rgb(0,0,0);font-weight: bold;">Calendario</a></li>
+                    <li class="nav-item"><a class="nav-link text-center" href="Horario.html">Horario personalizado</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center text-bg-light d-grid" style="justify-content: center;background: var(--bs-body-bg) !important;"><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Import Google font Agregar krona onw */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        }
+
+
+        .wrapper {
+        margin-top: 4px;
+        width: 100%;
+        height: 100%;
+        max-width: 300px;
+        max-height: 350px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .current-date{
+        margin-bottom: 10px;
+        }
+
+        header .current-date{
+        font-size: 2em;
+        font-weight: 500;
+        }
+
+        .calendar{
+        padding: 10px;
+        }
+
+        .calendar ul{
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        text-align: center;
+        }
+
+        .calendar .days{
+        margin-bottom: 15px;
+        }
+
+        .calendar li{
+        color: #333;
+        width: 14%; /* Aproximadamente 100% / 7 días */
+        font-size: .8em;
+        }
+
+        .calendar .weeks li{
+        font-weight: 500;
+        cursor: default;
+        }
+
+        .calendar .days li{
+        z-index: 1;
+        cursor: pointer;
+        position: relative;
+        margin-top: 25px;
+        }
+
+        .days li.inactive{
+        color: #aaa;
+        }
+
+        .days li.active{
+        color: #fff;
+        }
+
+        .days li::before{
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 50%;
+        height: 2em;
+        width: 2em;
+        z-index: -1;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+        .days li.active::before{
+        background: #9B59B6;
+        }
+
+        .days li:not(.active):hover::before{
+        background: #f2f2f2;
+        }
+
+        .event::after {
+        content: "";
+        width: 11%;
+        height: 20%;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        }
+
+        .event-description{
+        display: None;
+        margin : 9%;
+        }
+    </style>
+    <title>Calendario de Eventos</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="calendar">
+            <div class="current-date">
+                Agosto 2024
+            </div>
+
+            <ul class="weekdays">
+                <li>Lu</li>
+                <li>Ma</li>
+                <li>Mi</li>
+                <li>Ju</li>
+                <li>Vi</li>
+                <li>Sa</li>
+                <li>Do</li>
+            </ul>
+            <ul class="days"></ul>
+        </div>
+
+    </div>
+    <div class="wrapper" style="margin-top: 20px; margin-bottom: 20px;" Hidden="True" id="events">
+        <div class="event-description" id="event-description" style="text-align: left;"></div>
+    </div>
+    <script>
+        const daysTag = document.querySelector(".days"),
+        currentDate = document.querySelector(".current-date"),
+        eventDescription = document.querySelector(".event-description");
+        const eventsContainer = document.getElementById("events");
+
+        let date = new Date(2023,7 )// 7 corresponds to August
+            currYear = date.getFullYear(),
+            currMonth = date.getMonth();
+
+        const events = {
+            18: ["* Responder examen de inglés y cuestionario de datos estadísticos", "* Descargar e imprimir documentación"],
+            19: ["* Ceremonia de bienvenida (apellidos A-I)"],
+            20: ["* Ceremonia de bienvenida (apellidos M-Z)"],
+            21: ["* Proceso de inscripción en línea", "* Curso Igualdad de Género en la UNAM"],
+            22: ["* Proceso de inscripción en línea", "* Curso Igualdad de Género en la UNAM"],
+            23: ["* Proceso de inscripción presencial", "* Curso Igualdad de Género en la UNAM"],
+            24: ["* Proceso de inscripción presencial", "* Curso Igualdad de Género en la UNAM", "* Responde el Examen Diagnóstico de Ingreso (EDI)"],
+            25: ["* Proceso de inscripción presencial", "* Curso Igualdad de Género en la UNAM"],
+            26: ["* Responde el Examen Diagnóstico de Ingreso (EDI)"],
+            28: ["* Inicio de clases", "* Activa tu correo institucional", "* Minicurso Herramientas TIC", "* Ticómetro"],
+            29: ["* Activa tu correo institucional", "* Minicurso Herramientas TIC", "* Ticómetro"],
+            30: ["* Activa tu correo institucional", "* Minicurso Herramientas TIC", "* Ticómetro"],
+            31: ["* Activa tu correo institucional", "* Minicurso Herramientas TIC", "* Ticómetro"],
+        };
+
+        const renderCalendar = () => {
+            let firstDayofMonth = (new Date(currYear, currMonth, 1).getDay() - 1 + 7) % 7, 
+                lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+                lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
+                lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+            let liTag = "";
+
+            for (let i = firstDayofMonth; i > 0; i--) {
+                liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+            }
+
+            for (let i = 1; i <= lastDateofMonth; i++) {
+                let today = new Date();
+                let isToday = i === today.getDate() ? "active" : "";
+                let isEvent = events[i] ? "event" : "";
+                liTag += `<li class="${isToday} ${isEvent}" data-day="${i}">${i}</li>`;
+            }
+
+            for (let i = lastDayofMonth; i < 6; i++) {
+                liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+            }
+            currentDate.innerText = `Agosto ${currYear}`;
+            daysTag.innerHTML = liTag;
+            addEventListeners();
+        }
+
+        const addEventListeners = () => {
+            const eventDays = document.querySelectorAll('.days .event');
+            eventDays.forEach(day => {
+                day.addEventListener('click', (e) => {
+                    const day = e.target.dataset.day;
+                    const eventList = events[day].join('<br>');
+        
+                     eventDescription.innerHTML = `<strong>Eventos para el ${day} de Agosto:</strong><br>${eventList}`;
+                    eventDescription.style.display = 'block';
+                    eventsContainer.hidden = false;eventsContainer.hidden = false;
+                    
+                });
+            });
+        }
+
+        renderCalendar(); 
+    </script>
+</body>
+</html></div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/datos.js"></script>
+</body>
+
+</html>
