@@ -8,59 +8,73 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Krona+One&amp;display=swap">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Banner-Heading-Image-images.css') }}">
-
 </head>
 
 <body style="font-family: krona-one;">
     <nav class="navbar navbar-expand-md bg-body" style="background: rgb(217,236,8) !important;">
         <div class="container-fluid">
-            <!-- <img src="assets/img/logoUNAM.png" width="73" height="74"> -->
             <img src="{{ url_for('static', filename='img/logoUNAM.png') }}" width="73" height="74">
-            <!-- <img src="assets/img/LogoCCH.png" width="75" height="74"> -->
             <img src="{{ url_for('static', filename='img/LogoCCH.png') }}" width="75" height="74">
-            <!-- <img src="assets/img/logoCCHO.png" width="76" height="72"> -->
             <img src="{{ url_for('static', filename='img/logoCCHO.png') }}" width="76" height="72">
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-
-                    <!-- <li class="nav-item"><a class="nav-link active text-center" href="index.html" style="color: rgba(0,0,0,0.8);font-size: 20px;">Bienvenido</a></li> -->
                     <a class="nav-item text-center " href="{{ url_for('idex1') }}" style="color: rgba(0,0,0,0.8); font-size: 20px;">Bienvenido</a>
-                    <!-- <li class="nav-item"><a class="nav-link text-center" href="Instructivo.html" style="font-size: 20px;">Instructivo de inscripción</a></li> -->
                     <a class="nav-link text-center" href="{{ url_for('instructivo') }}" style="font-size: 20px;">Instructivo de inscripción</a>
-                    <!-- <li class="nav-item"><a class="nav-link text-center" href="Calendario.html" style="font-size: 20px;">Calendario</a></li> -->
                     <a class="nav-link text-center" href="{{ url_for('calendario') }}" style="font-size: 20px;">Calendario</a>
-                    <!-- <li class="nav-item"><a class="nav-link text-center" href="Horario.html" style="color: rgb(0,0,0);font-weight: bold;font-size: 20px;">Horario personalizado</a></li> -->
                     <a class="nav-link text-center" href="{{ url_for('horario') }}" style="font-size: 20px;">Horario</a>
-
                 </ul>          
             </div>
         </div>
     </nav>
+    
+    <!-- Mensajes Flash -->
+    <div class="container mt-2">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="alert alert-info">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <h1 style="margin-left: 15px;margin-right: 15px;text-align: justify;font-family: arial;margin-top: 20px;font-size: 30px;">Horario de la semana de bienvenida&nbsp;</h1>
     <p style="margin-left: 15px;margin-right: 15px;text-align: justify;font-family: arial;margin-top: 20px;text-size-adjust: initial;font-size: 20px;">Como habrás notado en el&nbsp;<a href="Instructivo.html" target="_blank">Instructivo de inscripción</a>&nbsp;la mayoría de actividades de la semana de inscripciones fueron programadas dependiendo de la primera letra de tu apellido paterno, para facilitarte armar tu horario de dicha semana así como inscribirte a un grupo para el curso de género diseñamos esta página en la que al ingresar tu&nbsp;<a href="#" data-bs-target="#cuenta" data-bs-toggle="modal">número de cuenta</a>&nbsp;te devolverá tanto tu horario como grupo y salón para el curso de género en formato pdf.</p>
+    
     <div class="modal fade" role="dialog" tabindex="-1" id="cuenta">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Tu número de cuenta aparece en la carta de asignación.</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
                 </div>
-                <!-- <div class="modal-body"><img class="img-fluid" src="assets/img/Captura%20de%20pantalla%202023-08-10%20a%20la(s)%2020.50.01.png"></div> -->
                 <div class="modal-body"><img class="img-fluid" src="{{ url_for('static', filename='img/Captura%20de%20pantalla%202023-08-10%20a%20la(s)%2020.50.01.png') }}"></div>
                 <div class="modal-footer"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">Entendido!</button></div>
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="margin-top: 30px;">
-        <div class="row">
-            <div class="col-md-6 col-xxl-4"><label class="form-label" style="margin-left: 15px;font-size: 20px;font-family: arial;">Ingresa tu primer apellido</label><input type="text" id="apellido" style="margin-left: 15px;transform: translateY(-6px);font-size: 20px;width: 177.815px;font-family: arial;"></div>
-            <div class="col-md-6"><label class="form-label" style="margin-left: 15px;font-size: 20px;font-family: arial;">Ingresa tu número de cuenta</label><input id="ncuenta" type="text" style="margin-left: 15px;transform: translateY(-6px);width: 125.946px;font-size: 20px;font-family: arial;" maxlength="9"/></div>
+    
+    <form action="{{ url_for('register') }}" method="post">
+        <div class="container-fluid" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-md-6 col-xxl-4">
+                    <label class="form-label" style="margin-left: 15px;font-size: 20px;font-family: arial;">Ingresa tu primer apellido</label>
+                    <input type="text" name="apellido" id="apellido" style="margin-left: 15px;transform: translateY(-6px);font-size: 20px;width: 177.815px;font-family: arial;">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" style="margin-left: 15px;font-size: 20px;font-family: arial;">Ingresa tu número de cuenta</label>
+                    <input name="cuenta" id="ncuenta" type="text" style="margin-left: 15px;transform: translateY(-6px);width: 125.946px;font-size: 20px;font-family: arial;" maxlength="9"/>
+                </div>
+            </div>
         </div>
-    </div><button class="btn btn-primary float-start" id="boton" type="button" style="font-size: 20px;margin-left: 25px;margin-top: 20px;">Generar horario</button>
-    <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
+        <button class="btn btn-primary float-start" id="boton" type="submit" style="font-size: 20px;margin-left: 25px;margin-top: 20px;">Generar horario</button>
+    </form>
+
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- <script src="assets/js/datos.js"></script> -->
     <script src="{{ url_for('static', filename='js/datos.js') }}"></script>
+
 </body>
 
 </html>

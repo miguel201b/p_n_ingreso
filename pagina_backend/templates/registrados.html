@@ -1,0 +1,47 @@
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<style>
+    /* Añade espacio entre celdas */
+    table {
+        border-spacing: 10px 5px; /* horizontal vertical */
+        width: 100%;
+    }
+
+    /* Añade padding dentro de las celdas */
+    th, td {
+        padding: 10px 20px; /* arriba-abajo izquierda-derecha */
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apellido</th>
+                <th>Cuenta</th>
+                <th>Grupo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.apellido }}</td>
+                <td>{{ student.cuenta }}</td>
+                <td>{{ student.group.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('download_csv') }}" class="btn btn-primary">Descargar CSV</a>
+</div>
+{% endblock %}
+
+
+                
