@@ -7,11 +7,23 @@ app.config['SECRET_KEY'] = "random_string"
 
 db = SQLAlchemy(app)
 
-
 @app.route('/instructivo')
 def instructivo():
     return render_template('Instructivo.html')
 
+@app.route('/calendario')
+def calendario():
+    return render_template('Calendario.html')
+
+@app.route('/horario')
+def horario():
+    return render_template('Horario.html')
+
+@app.route('/index')
+def idex1():
+    return render_template('index.html')
+
+    
 class Students(db.Model):
     id = db.Column('student_id', db.Integer, primary_key=True)
     apellido = db.Column(db.String(100))

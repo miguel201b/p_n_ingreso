@@ -5,20 +5,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Pagina_n_i</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Krona+One&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/Banner-Heading-Image-images.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Banner-Heading-Image-images.css') }}">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md bg-body" style="background: rgb(217,236,8) !important;">
-        <div class="container-fluid"><img src="assets/img/logoUNAM.png" width="73" height="74"><img src="assets/img/LogoCCH.png" width="75" height="74"><img src="assets/img/logoCCHO.png" width="76" height="72"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid">
+            <img src="{{ url_for('static', filename='img/logoUNAM.png') }}" width="73" height="74">
+            <img src="{{ url_for('static', filename='img/LogoCCH.png') }}" width="75" height="74">
+            <img src="{{ url_for('static', filename='img/logoCCHO.png') }}" width="76" height="72">
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-center" href="index.html" style="color: rgba(0,0,0,0.8);">Bienvenido</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="Instructivo.html">Instructivo de inscripción</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="Calendario.html" style="color: rgb(0,0,0);font-weight: bold;">Calendario</a></li>
-                    <li class="nav-item"><a class="nav-link text-center" href="Horario.html">Horario personalizado</a></li>
+
+                    <!-- <li class="nav-item"><a class="nav-link active text-center" href="index.html" style="color: rgba(0,0,0,0.8);font-size: 20px;">Bienvenido</a></li> -->
+                    <a class="nav-item text-center" href="{{ url_for('idex1') }}" style="font-size: 20px;">Bienvenido</a> 
+                    <!-- <li class="nav-item"><a class="nav-link text-center" href="Instructivo.html" style="font-size: 20px;">Instructivo de inscripción</a></li> -->
+                    <a class="nav-link text-center" href="{{ url_for('instructivo') }}" style="font-size: 20px;">Instructivo de inscripción</a>
+                    <!-- <li class="nav-item"><a class="nav-link text-center" href="Calendario.html" style="font-size: 20px;">Calendario</a></li> -->
+                    <a class="nav-link text-center" href="{{ url_for('calendario') }}" style="font-size: 20px;">Calendario</a>
+                    <!-- <li class="nav-item"><a class="nav-link text-center" href="Horario.html" style="color: rgb(0,0,0);font-weight: bold;font-size: 20px;">Horario personalizado</a></li> -->
+                    <a class="nav-link text-center" href="{{ url_for('horario') }}" style="font-size: 20px;">Horario</a>
+
+
                 </ul>
             </div>
         </div>
@@ -236,8 +247,8 @@
     </script>
 </body>
 </html></div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/datos.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/datos.js') }}"></script>
 </body>
 
 </html>
