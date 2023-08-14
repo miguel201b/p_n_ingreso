@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        td, th {
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        th {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h2>HORARIO</h2>
+    <table cellspacing="0" align="center">
+        <tr>
+            <th height="50" width="100">HORA</th>
+            <th height="50" width="100">SÁBADO</th>
+            <th height="50" width="100">DOMINGO</th>
+            <th height="50" width="100">LUNES</th>
+            <th height="50" width="100">MARTES</th>
+            <th height="50" width="100">MIERCOLES</th>
+            <th height="50" width="100">JUEVES</th>
+            <th height="50" width="100">VIERNES</th>
+        </tr>
+        {% set row_spans = {'0': 0, '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0} %}
+        {% for hora in horario.keys() %}
+        <tr>
+            <td align="center">{{ hora }}</td>
+            {% for dia in range(7) %}
+                {% set actividad = horario[hora][dia] %}
+                {% if row_spans[dia|string] > 0 %}
+                    {% set _ = row_spans.__setitem__(dia|string, row_spans[dia|string]-1) %}
+                {% else %}
+                    {% if actividad == 'INSCRIPCION' %}
+                        <td rowspan="3" align="center">{{ actividad }}</td>
+                        {% set _ = row_spans.__setitem__(dia|string, 2) %}
+                    {% elif actividad == 'EMA' %}
+                        <td rowspan="6" align="center">{{ actividad }}</td>
+                        {% set _ = row_spans.__setitem__(dia|string, 5) %}
+                    {% elif actividad == 'CURSO DE GÉNERO' %}
+                        <td rowspan="4" align="center">{{ actividad }}</td>
+                        {% set _ = row_spans.__setitem__(dia|string, 3) %}
+                    {% elif actividad == 'EDI' %}
+                        <td rowspan="8" align="center">{{ actividad }}</td>
+                        {% set _ = row_spans.__setitem__(dia|string, 7) %}
+                    {% elif actividad == 'RECORRIDOS' %}
+                        <td rowspan="1" align="center">{{ actividad }}</td>
+                    {% elif actividad == 'CEREMONIA DE BIENVENIDA' %}
+                        <td rowspan="2" align="center">{{ actividad }}</td>
+                        {% set _ = row_spans.__setitem__(dia|string, 1) %}
+                    {% else %}
+                        <td align="center">{{ actividad }}</td>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

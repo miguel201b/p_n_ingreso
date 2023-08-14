@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash,Response,jsonify
+from flask import Flask, render_template, request, redirect, url_for,Response,jsonify
 import csv
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from io import StringIO
 import os
 from unidecode import unidecode
+from horario_tabla import obtener_horario
 
 def formato_apellido(input_str):
     return unidecode(input_str).lower()
@@ -77,6 +78,11 @@ def calendario():
 def horario():
     return render_template('Horario.html')
 
+@app.route('/horario/<letra>')
+def horarios(letra):
+    horario,hora_inicio = obtener_horario(letra)
+    return render_template('horario_semana.html', horario=horario, hora_inicio=hora_inicio)
+
 @app.route('/index')
 def idex1():
     return render_template('index.html')
@@ -96,6 +102,7 @@ def register():
     if request.method == 'POST':
         apellido = request.form['apellido']
         apellido = formato_apellido(apellido)
+        letra = apellido[0]
         cuenta = request.form['cuenta']
 
         group = assign_group(apellido)
@@ -110,7 +117,11 @@ def register():
             print(e)  
             return jsonify({"success": False, "message": "Error registrando al estudiante. Por favor, inténtalo de nuevo."})
         
-    return redirect(url_for('index'))
+    return redirect(url_for('foo'))
+
+@app.route('/foo')
+def foo():
+    return 'Hello Foo!'
 
 if __name__ == "__main__":
     app.run(debug=True)

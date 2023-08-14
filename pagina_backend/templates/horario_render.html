@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
+        td, th {
+            width: 100%; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>HORARIO</h2>
+    <table border="" cellspacing="0" align="center">
+        <tr>
+            <td align="center" height="50" width="100"><b>DÍA</b></td>
+            <td align="center" height="50" width="100"><b>SÁBADO</b></td>
+            <td align="center" height="50" width="100"><b>DOMINGO</b></td>
+            <td align="center" height="50" width="100"><b>LUNES</b></td>
+            <td align="center" height="50" width="100"><b>MARTES</b></td>
+            <td align="center" height="50" width="100"><b>MIERCOLES</b></td>
+            <td align="center" height="50" width="100"><b>JUEVES</b></td>
+            <td align="center" height="50" width="100"><b>VIERNES</b></td>
+        </tr>
+        {% for actividad, horario_actividad in horario.items() %}
+        <tr>
+            <td>{{ actividad }}</td>
+            <td>{{ horario_actividad["Sábado"] }}</td>
+            <td>{{ horario_actividad["Domingo"] }}</td>
+            <td>{{ horario_actividad["Lunes"] }}</td>
+            <td>{{ horario_actividad["Martes"] }}</td>
+            <td>{{ horario_actividad["Miércoles"] }}</td>
+            <td>{{ horario_actividad["Jueves"] }}</td>
+            <td>{{ horario_actividad["Viernes"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
