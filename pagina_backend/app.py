@@ -23,7 +23,7 @@ def assign_group(apellido):
     return group
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kuxebdznzbyurq:2a0c88becd3bb9291f557549dd63d6e9bb8dc9ba414be68cace2f544f11e87e0@ec2-34-193-110-25.compute-1.amazonaws.com:5432/dfba7ljdjd3ej5'
+app.config['SQLALCHEMY_DATABASE_URI'] = ''
 app.config['SECRET_KEY'] = "random_string"
  
 #Modelo de la base de datos
