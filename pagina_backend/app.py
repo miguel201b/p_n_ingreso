@@ -17,13 +17,13 @@ def assign_group(apellido):
         time_slot = "11"
     else:
         time_slot = "13"
-    group = Groups.query.filter_by(time_slot=time_slot).filter(Groups.current_students < Groups.max_students).first()
+    group = Groups.query.filter_by(time_slot=time_slot).filter(Groups.current_students < Groups.max_students).order_by(Groups.id).first()
     if not group:
         raise Exception(f"No hay grupos disponibles para el horario {time_slot}")
     return group
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kuxebdznzbyurq:2a0c88becd3bb9291f557549dd63d6e9bb8dc9ba414be68cace2f544f11e87e0@ec2-34-193-110-25.compute-1.amazonaws.com:5432/dfba7ljdjd3ej5'
 app.config['SECRET_KEY'] = "random_string"
  
 #Modelo de la base de datos
@@ -104,19 +104,22 @@ def register():
         apellido = formato_apellido(apellido)
         letra = apellido[0]
         cuenta = request.form['cuenta']
-
-        group = assign_group(apellido)
-        group.current_students += 1
-
-        try:
-            student = Students(apellido=apellido, cuenta=cuenta,group = group)
-            db.session.add(student)
-            db.session.commit()
-            return jsonify({"success": True, "message": "Estudiante registrado con éxito!"})
-        except Exception as e:
-            print(e)  
-            return jsonify({"success": False, "message": "Error registrando al estudiante. Por favor, inténtalo de nuevo."})
+        if not cuenta.startswith(("324", "1")):
+            return jsonify({"success": False, "message": "Número de cuenta inválido."})
         
+        else:
+            group = assign_group(apellido)
+            group.current_students += 1
+
+            try:
+                student = Students(apellido=apellido, cuenta=cuenta,group = group)
+                db.session.add(student)
+                db.session.commit()
+                return jsonify({"success": True, "message": "Estudiante registrado con éxito!"})
+            except Exception as e:
+                print(e)  
+                return jsonify({"success": False, "message": "Error registrando al estudiante. Por favor, inténtalo de nuevo."})
+            
     return redirect(url_for('foo'))
 
 @app.route('/foo')
@@ -124,4 +127,4 @@ def foo():
     return 'Hello Foo!'
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug = True)

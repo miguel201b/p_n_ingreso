@@ -33,3 +33,10 @@ document.querySelector("#boton").addEventListener("click", function(event) {
 function showAlert(message) {
     alert(message);
 }
+function showAlert(message) {
+    alert(message);
+    // Borra los campos
+    document.getElementById("apellido").value = "";
+    document.getElementById("ncuenta").value = "";
+}
+
