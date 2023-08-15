@@ -1,9 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for,Response,jsonify
-import csv
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-from io import StringIO
-import os
 from unidecode import unidecode
 from horario_tabla import obtener_horario
 
